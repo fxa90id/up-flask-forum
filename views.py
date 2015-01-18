@@ -147,7 +147,8 @@ def answer(post_id):
         db_session.add(post)
         db_session.commit()
         if post.id:
-            return redirect('/thread/%d' % post_id)
+            th = Thread.query.filter(Thread.post_id == post_id).first()
+            return redirect('/thread/%d' % th.id)
     else:
         return render_template('thread_answer.html')
 
