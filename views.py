@@ -26,7 +26,7 @@ def indexs():
 
 @app.route('/threads')
 def threads():
-    sql = 'SELECT t.id, t.topic, u.login, p.add_time FROM threads t INNER JOIN posts p ON p.id = t.post_id INNER JOIN users u ON u.id = p.author_id'
+    sql = 'SELECT t.id, t.topic, u.login, p.add_time FROM threads t INNER JOIN posts p ON p.id = t.post_id INNER JOIN users u ON u.id = p.author_id ORDER BY p.add_time DESC'
     conn = engine.raw_connection()
     threads = None
     try:
