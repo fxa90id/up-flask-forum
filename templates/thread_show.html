@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block title %} - {{ thread[0] }}{% endblock %}
+{% block body %}
+    <div class="col-xs-12">
+        <h2>{{ thread[0] }}</h2>
+    </div>
+    <div class="col-xs-12" style="padding-bottom: 5px; margin-bottom: 10px; border-bottom: 1px solid #aaa;">
+        <strong>{{ thread[3] }}</strong> o {{ thread[2] }} napisał:
+        <p>
+            <em>
+                {{ thread[1] }}
+            </em>
+        </p>
+    </div>
+    {% if answers %}
+    {% for answer in answers %}
+    <div class="col-xs-12">
+        <strong>{{ answer[2] }}</strong> o {{ answer[1] }} napisał:
+        <p>
+            <em>
+                {{ answer[0] }}
+            </em>
+        </p>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="col-xs-12">
+        <a class="btn btn-default" href="/thread/answer/{{ thread[4] }}">Odpowiedz</a>
+    </div>
+
+{% endblock %}

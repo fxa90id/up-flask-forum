@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block title %} - Wszystkie wątki{% endblock %}
+{% block body %}
+    <div class="col-xs-12">
+        <h2>Wątki</h2>
+    </div>
+
+    {% if threads %}
+    {% for thread in threads %}
+            <div class="col-xs-12 col-md-7"><a href="/thread/{{ thread[0] }}">{{ thread[1] }}</a></div>
+            <div class="col-xs-12 col-md-2">napisał <a href="/profile/{{ thread[2] }}">{{ thread[2] }}</a></div>
+            <div class="col-xs-12 col-md-3">o {{ thread[3] }}</div>
+    {% endfor %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block title %} - profil {{ current_user.login }} {% endblock %}
+{% block body %}
+    <div class="col-xs-12">
+        <h2>{{ current_user.login }}</h2>
+    </div>
+    <div class="col-xs-12">
+        liczba postów: {{ posts_count }}
+    </div>
+{% endblock %}

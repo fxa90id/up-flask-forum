@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block title %} - odpowiedz na wątek{% endblock %}
+{% block body %}
+    <div class="col-xs-12">
+        <h2>Nowa odpowiedź</h2>
+    </div>
+    <div class="col-xs-12">
+        <form method="POST">
+                <label for="content">Treść:</label>
+                <textarea name="content" rows="5" style="width: 100%"></textarea>
+            <button type="submit" class="btn btn-default">Odpowiedz</button>
+        </form>
+    </div>
+{% endblock %}
