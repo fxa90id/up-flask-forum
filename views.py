@@ -118,7 +118,7 @@ def show_user_profile(username):
         posts_count = results[0]
     except:
         pass
-    return render_template('profile.html', posts_count=posts_count)
+    return render_template('profile.html', posts_count=posts_count, username=username)
 
 @app.route('/thread/new', methods=['GET', 'POST'])
 @login_required

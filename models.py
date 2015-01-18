@@ -1,7 +1,7 @@
 import hashlib
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey
 
 from database import Base
 
@@ -10,7 +10,6 @@ class Thread(Base):
     id = Column(Integer, primary_key=True)
     topic = Column(String(60), unique=True)
     post_id= Column(Integer, ForeignKey('posts.id'))
-    add_time = Column(DateTime)
     add_time = Column(String(19))
 
     def __init__(self, topic=None, post_id=None, add_time=None):
