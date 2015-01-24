@@ -31,7 +31,7 @@
                 <li><a href="/threads">Wszystkie wątki</a></li>
                 {%  if current_user.is_authenticated() %}
                 <li><a href="/profile">Profil</a></li>
-                {% if current_user.is_admin() %}
+                {% if current_user and current_user.is_admin() %}
                 <li><a href="/admin">Administracja</a></li>
                 {% endif %}
                 <li><a href="/logout">Wyloguj</a></li>
