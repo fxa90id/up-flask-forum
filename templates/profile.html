@@ -1,10 +1,15 @@
 {% extends 'layout.html' %}
-{% block title %} - profil {{ current_user.login }} {% endblock %}
+{% block title %} - profil {{ username }} {% endblock %}
 {% block body %}
     <div class="col-xs-12">
         <h2>{{ username }}</h2>
     </div>
     <div class="col-xs-12">
+        <p>
         liczba postów: {{ posts_count }}
+        {% if is_admin %} <br>
+            <strong>użytkownik jest administratorem</strong>
+        {% endif %}
+        </p>
     </div>
 {% endblock %}

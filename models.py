@@ -1,6 +1,5 @@
 import hashlib
 from datetime import datetime
-
 from sqlalchemy import Column, Integer, String, ForeignKey
 
 from database import Base
@@ -37,15 +36,21 @@ class Post(Base):
             self.id, self.parent_id, self.author_id, self.content, self.add_time)
 
 
+class RoleE(object):
+    USER = 0
+    ADMIN = 1
+
 class User(Base):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
     login = Column(String(50), unique=True)
     password = Column(String(120))
+    role = Column(Integer, default=RoleE.USER)
     is_active = lambda *args: True
     is_authenticated = lambda *args: True
     is_anonymous = lambda *args: False
+    is_admin = lambda self: self.role == RoleE.ADMIN
 
     def __init__(self, login=None, password=None):
         self.login = login
@@ -62,3 +67,4 @@ class User(Base):
 
     def check_password(self, password):
         return self.password == self.make_password(password)
+
