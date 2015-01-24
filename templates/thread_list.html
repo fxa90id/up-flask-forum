@@ -7,7 +7,7 @@
 
     {% if threads %}
     {% for thread in threads %}
-            <div class="col-xs-12 col-md-7"><a href="/thread/{{ thread[0] }}">{{ thread[1] }}</a>{% if current_user and current_user.is_admin() %} | <a href="/admin/thread/remove/{{ thread[0] }}">usuń</a>{% endif %}</div>
+            <div class="col-xs-12 col-md-7"><a href="/thread/{{ thread[0] }}">{{ thread[1] }}</a>{% if current_user.is_authenticated() and current_user.is_admin() %} | <a href="/admin/thread/remove/{{ thread[0] }}">usuń</a>{% endif %}</div>
             <div class="col-xs-12 col-md-2">napisał <a href="/profile/{{ thread[2] }}">{{ thread[2] }}</a></div>
             <div class="col-xs-12 col-md-3">o {{ thread[3] }}</div>
     {% endfor %}
