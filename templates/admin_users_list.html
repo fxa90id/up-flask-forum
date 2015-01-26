@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block title %} - Administracja - Użytkownicy{% endblock %}
+{% block body %}
+    {% if users %}
+            <div class="col-xs-12 col-md-1">id</div>
+            <div class="col-xs-12 col-md-2">login</div>
+            <div class="col-xs-12 col-md-6">hasło</div>
+            <div class="col-xs-12 col-md-3 text-center">administrator</div>
+        {% for user in users %}
+            <div class="col-xs-12 col-md-1">{{ user[0] }}</div>
+            <div class="col-xs-12 col-md-2">{{ user[1] }}</div>
+            <div class="col-xs-12 col-md-6">{{ user[2] }}</div>
+            <div class="col-xs-12 col-md-3 text-center">
+            <form action="/admin/setadmin/{{ user[0] }}/{{ user[3] }}" method="POST">
+                <input type="checkbox" name="user_current_role" disabled="disabled" {% if user[3] %}checked="checked"{% endif %} value="{{ user[3] }}" />
+                <button typ="submit">zmień</button>
+            </form>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

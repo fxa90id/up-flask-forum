@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block title %} - Administracja - pulpit{% endblock %}
+{% block body %}
+    {% if last_ten_posts %}
+        <div class="col-xs-12">
+            <h2>Ostatnie 10 postów</h2>
+        </div>
+        {% for post in last_ten_posts %}
+            <div class="col-xs-12 col-md-2">{{ post[1] }}</div>
+            <div class="col-xs-12 col-md-7">{{ post[0] }}</div>
+            <div class="col-xs-12 col-md-3">{{ post[2] }}</div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

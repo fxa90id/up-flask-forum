@@ -113,7 +113,7 @@ def register():
 @login_required
 def admin_dashboard():
     # ostatnie 10 postow
-    sql = 'SELECT * FROM posts p INNER JOIN users u ON u.id = p.author_id LIMIT 10'
+    sql = 'SELECT p.content, u.login, p.add_time FROM posts p INNER JOIN users u ON u.id = p.author_id ORDER BY p.add_time DESC  LIMIT 10 '
     conn = engine.raw_connection()
     try:
         cursor = conn.cursor()
@@ -133,9 +133,9 @@ def show_user_profile(username):
     # easy way
     # posts = Post.query.filter(Post.author_id == current_user.id).all()
     # hard way
-    sql = 'SELECT count(p.id) FROM posts p INNER JOIN users u ON u.id = p.author_id WHERE u.login=:username'
     conn = engine.raw_connection()
     try:
+        sql = 'SELECT count(p.id) FROM posts p INNER JOIN users u ON u.id = p.author_id WHERE u.login=:username'
         cursor = conn.cursor()
         print sql
         cursor.execute(sql, { 'username': username })
@@ -145,8 +145,10 @@ def show_user_profile(username):
         print sql
         cursor.execute(sql, { 'username': username })
         user = cursor.fetchone()
-    except:
-        pass
+    except Exception as e:
+        print e
+        return redirect('/')
+
     return render_template('profile.html', posts_count=posts_count, username=user[0], is_admin=(user[1] == RoleE.ADMIN))
 
 @app.route('/thread/new', methods=['GET', 'POST'])
